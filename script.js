@@ -1,20 +1,10 @@
-body {
-  margin: 0;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+let frame = 1;
+let totalFrames = 88;
 
-#viewer {
-  width: 350px;
-  height: 350px;
-  overflow: hidden;
-}
+const img = document.getElementById("spinImage");
 
-#spinImage {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+document.addEventListener("mousemove", (e) => {
+    let speed = Math.floor(e.clientX / 10);
+    frame = (speed % totalFrames) + 1;
+    img.src = `images/${frame}.png`;
+});

@@ -1,52 +1,20 @@
-let totalFrames = 88; 
-let currentFrame = 1;
-let img = document.getElementById("spinImage");
+body {
+  margin: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-let startX = 0;
+#viewer {
+  width: 350px;
+  height: 350px;
+  overflow: hidden;
+}
 
-document.addEventListener("mousedown", (e) => {
-    startX = e.clientX;
-});
-
-document.addEventListener("mousemove", (e) => {
-    if (e.buttons === 1) {
-        let diff = e.clientX - startX;
-
-        if (diff > 5) {
-            currentFrame++;
-            if (currentFrame > totalFrames) currentFrame = 1;
-            img.src = `images/${currentFrame}.png`;
-            startX = e.clientX;
-        }
-
-        if (diff < -5) {
-            currentFrame--;
-            if (currentFrame < 1) currentFrame = totalFrames;
-            img.src = `images/${currentFrame}.png`;
-            startX = e.clientX;
-        }
-    }
-});
-
-// Mobile Touch Support
-document.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-});
-
-document.addEventListener("touchmove", (e) => {
-    let diff = e.touches[0].clientX - startX;
-
-    if (diff > 5) {
-        currentFrame++;
-        if (currentFrame > totalFrames) currentFrame = 1;
-        img.src = `images/${currentFrame}.png`;
-        startX = e.touches[0].clientX;
-    }
-
-    if (diff < -5) {
-        currentFrame--;
-        if (currentFrame < 1) currentFrame = totalFrames;
-        img.src = `images/${currentFrame}.png`;
-        startX = e.touches[0].clientX;
-    }
-});
+#spinImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
